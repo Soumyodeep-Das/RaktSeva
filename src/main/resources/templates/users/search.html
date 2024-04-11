@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="form-page">
+        <script>
+            function convertToUppercase(input) {
+                input.value = input.value.toUpperCase();
+            }
+        </script>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 mt-2">
+                    <div class="my-card text-center">
+                        <h1 class="text-center">Search For Blood</h1>
+                        <form th:action="@{/search-process}" th:object="${banks}" th:method="post"
+                            class="row g-3 align-items-center">
+                            <!-- Pass the path variables using Thymeleaf expressions -->
+
+                            <div class="mb-3 form-group col-md-3">
+                                <label for="bloodGroup">Blood Group</label>
+                                <select name="group" id="bloodGroup" class="form-control" required>
+                                    <option value=""></option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 form-group col-md-3">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" class="form-control"
+                                    oninput="convertToUppercase(this)" required>
+                            </div>
+
+                            <div class="mb-3 form-group col-md-3">
+                                <label for="district">District</label>
+                                <input type="text" id="district" name="district" class="form-control"
+                                    oninput="convertToUppercase(this)" required>
+                            </div>
+
+                            <div class="mb-3 form-group col-md-3">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state" class="form-control"
+                                    oninput="convertToUppercase(this)" required>
+                            </div>
+
+                            <!-- <div class="mb-3 form-group col-md-3">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" class="form-control" oninput="convertToUppercase(this)" required>
+                            </div> -->
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-search">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+
+</html>

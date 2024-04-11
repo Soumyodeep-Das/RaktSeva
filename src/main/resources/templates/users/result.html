@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Search Blood</h1>
+    <section>
+        <div class="container mt-4">
+            <div class="row" th:if="${not #lists.isEmpty(banks)}">
+
+
+                <div th:each="bank : ${banks}">
+
+                    <div class="new-card">
+                        <div class="image">
+                            <img th:src="@{'./images/' + ${bank.image}}" alt="image_blood">
+                        </div>
+
+
+                        <div class="name">
+                            <p th:text="${bank.name}">Abc Blood bank</p>
+                        </div>
+                        <div class="details">
+                            <p class="address"
+                                th:text="'Address :' + ' ' + ${bank.address} + ', ' + ${bank.city} + ', ' + ${bank.district} + ', ' + ${bank.state} + ', ' + ${bank.country}">
+                                Adress:kolkata,thakurpur</p>
+                            <div class="contact_detail">
+                                <p>Email:
+                                    <a href="#" th:text="${bank.email}">abc@gmail.com</a>
+                                </p>
+                                <p>Phone No:
+                                    <a href="#" th:text="${bank.contactNumber}">9547832054</a>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="blood_stock">
+                            <p>Blood stock available :
+                            </p>
+                            <th:block th:each="blood : ${bank.blood}">
+                                <!-- Display the blood type and its corresponding stock -->
+                                <h3 class="mb-0 blood-text" style="font-weight: 500;"
+                                    th:text="${blood.bloodGroup} + ' : ' + ${blood.bloodAmount} + ' units'"></h3>
+                            </th:block>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <!-- Iterate over banks, displaying 3 per row -->
+                <!-- <div class="col-md-4 mb-4" th:each="bank : ${banks}">
+                    <div class="card">
+                        <div class="card-body blood-card">
+                            <h5 class="card-title" style="color: black;" th:text="${bank.name}">Blood Bank 1</h5>
+                            <p class="card-text"
+                                th:text="'Address :' + ' ' + ${bank.address} + ', ' + ${bank.city} + ', ' + ${bank.district} + ', ' + ${bank.state} + ', ' + ${bank.country}">
+                                City</p>
+                            
+                            <p class="card-text" th:text="'Contact No. :' + ' ' + ${bank.contactNumber}">Contact:
+                                +123456789</p>
+                            <hr>
+                            <h6 style="font-weight: 600; font-size: larger; color: darkslategray;">Live Blood Stock
+                            </h6>
+                            <th:block th:each="blood : ${bank.blood}"> -->
+                <!-- Display the blood type and its corresponding stock -->
+                <!-- <p class="mb-0 blood-text" style="font-weight: 500;"
+                                    th:text="${blood.bloodGroup} + ' : ' + ${blood.bloodAmount} + ' units'"></p>
+                            </th:block>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="row" th:if="${#lists.isEmpty(banks)}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">No Banks Available</h5>
+                        <p class="card-text">Unfortunately, there are currently no banks available. Please try again
+                            later.</p>
+                        <!-- Extra information -->
+                        <p class="card-text">You can also try:</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Checking your internet connection</li>
+                            <li class="list-group-item">Refreshing the page</li>
+                            <li class="list-group-item">Please ensure that all required details are entered correctly
+                            </li>
+
+                        </ul>
+                        <!-- Back button -->
+                        <a href="#" th:href="@{'/search'}" class="btn btn-primary mt-3">Back</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>
