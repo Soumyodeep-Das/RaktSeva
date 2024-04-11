@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{bank/base::layout(~{::section})}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Dashboard</title>
+</head>
+
+<body>
+  <section style="background-color: #f4f5f7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img th:src="@{'/images/'+${bank.image}}" alt="Avatar" class="img-fluid my-5"
+                  style="width: 120px; border-radius: 40%;" />
+                <!-- <img th:src="@{'/images/'+${contact.image}}" alt="profile_picture" style="height: 40%; width: 40%; border-radius: 10%;"> -->
+                <h5>
+                  <span th:text="${bank.name}"></span>
+                </h5>
+                <p>
+                  <span th:text="${bank.role}"></span>
+                </p>
+                <i class="far fa-edit mb-5"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Information</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted" th:text="${bank.email}">info@example.com</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Phone</h6>
+                      <p class="text-muted" th:text="${bank.contactNumber}">123 456 789</p>
+                    </div>
+                  </div>
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Address</h6>
+                      <p class="text-muted
+                          " th:text="${bank.address}">1234 Street Name, City Name</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>City</h6>
+                      <p class="text-muted
+                          " th:text="${bank.city}">City Name</p>
+                    </div>
+                  </div>
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>State</h6>
+                      <p class="text-muted
+                          " th:text="${bank.state}">State Name</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Country</h6>
+                      <p class="text-muted
+                          " th:text="${bank.country}">Country Name</p>
+                    </div>
+                  </div>
+                  <!-- <h6>About</h6>
+                      <hr class="mt-0 mb-4"> -->
+                  <!-- <div class="row pt-1">
+                        <div class="col-6 mb-3" style="width: 100%;">
+                          <p class="text-muted"  th:text="${bank.about}">Lorem ipsum</p>
+                        </div>
+                      </div> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/a+'}" class="square-button">A+</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/a-'}" class="square-button">A-</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/b+'}" class="square-button">B+</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/b-'}" class="square-button">B-</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/o+'}" class="square-button">O+</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/o-'}" class="square-button">O-</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/ab+'}" class="square-button">AB+</a>
+        </div>
+        <div class="col-auto">
+          <a href="" th:href="@{'/bank/view-by-group/ab-'}" class="square-button">AB-</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

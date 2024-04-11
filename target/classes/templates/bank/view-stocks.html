@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{bank/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Dashboard</title>
+</head>
+
+<body>
+    <section>
+        <h2 class="text-center mt-5 mb-4">Current Blood Stock</h2>
+        <div class="container table-responsive">
+            <div th:if="${session.delete}" class="text-center alert" th:classappend="${'alert-'+session.delete.type}"
+                role="alert">
+                <span th:text="${session.delete.content}"></span>
+                <!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                     -->
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Blood Id</th>
+                        <th scope="col">Blood Type</th>
+                        <th scope="col">Blood Donation Date</th>
+                        <th scope="col">Blood Expire Date</th>
+                        <th scope="col">Units</th>
+                        <th scope="col">Price Per Unit</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="c : ${bloods}">
+                        <td th:text="${c.id}">1</td>
+                        <td th:text="${c.bloodGroup}">A+</td>
+                        <td th:text="${c.bloodDonationDate}">2024-04-12</td>
+                        <td th:text="${c.bloodExpireDate}">2024-04-20</td>
+                        <td th:text="${c.bloodAmount}">10</td>
+                        <td th:text="${c.bloodPrice}">$50</td>
+                        <td>
+                            <a href="#" th:onclick="'deleteBlood(' + ${c.id} + ')'" class="btn btn-danger btn-sm">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+                            <form th:action="@{'/bank/update/'+${c.id}}" method="post">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li th:classappend="${currentpage == null || currentpage == 0 ? 'disabled' : ''}" class="page-item">
+                    <a class="page-link" th:href="@{'/bank/view-stocks/' + ${currentpage - 1}}">Previous</a>
+                </li>
+
+                <li th:each="i : ${#numbers.sequence(0, totalpages - 1)}" class="page-item"
+                    th:classappend="${currentpage == i ? 'active' : ''}">
+                    <a class="page-link" th:href="@{'/bank/view-stocks/' + ${i}}"><span th:text="${i + 1}"></span></a>
+                </li>
+
+                <li th:classappend="${currentpage + 1 >= totalpages ? 'disabled' : ''}" class="page-item">
+                    <a class="page-link" th:href="@{'/bank/view-stocks/' + ${currentpage + 1}}">Next</a>
+                </li>
+            </ul>
+
+        </nav>
+    </section>
+</body>
+
+</html>

@@ -26,6 +26,5 @@ replay_pid*
 # vscode
 secrets.properties
 .vscode/
-target
 application.properties
 HELP.md

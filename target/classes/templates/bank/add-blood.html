@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{bank/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Dashboard</title>
+</head>
+
+<body>
+    <section>
+        <div class="container mt-4">
+            <h2>Blood Stock Management</h2>
+            <hr>
+            <!-- Add New Blood Stock Form -->
+            <div class="mb-4">
+                <h4>Add New Blood Stock</h4>
+                <form th:action="@{/bank/process-blood}" th:object="${blood}" enctype="multipart/form-data"
+                    method="post">
+                    <div class="form-group">
+                        <label for="bloodGroup">Blood Group:</label>
+                        <select class="form-control" id="bloodGroup" name="bloodGroup">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodAmount">Units:</label>
+                        <input type="number" class="form-control" id="units" name="bloodAmount">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodDonationDate">Blood Donation Date:</label>
+                        <input type="date" class="form-control" id="donationDate" name="bloodDonationDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodExpireDate">Blood Expire Date:</label>
+                        <input type="date" class="form-control" id="expireDate" name="bloodExpireDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodPrice">Blood Price Per Unit:</label>
+                        <input type="number" class="form-control" id="pricePerUnit" name="bloodPrice" step="0.01">
+                    </div>
+                    <!-- Back button -->
+                    <a href="#" th:href="@{'/bank/dashboard'}" class="btn btn-danger mt-2 mr-2 float-end">Back</a>
+                    <button type="submit" class="btn btn-primary float-end my-2">Add Stock</button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
